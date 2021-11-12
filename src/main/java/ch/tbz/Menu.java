@@ -10,6 +10,7 @@ public class Menu {
     private final Language language = new Language("","");
     private final Switzerland switzerland = new Switzerland("","");
     private final Ranking ranking = new Ranking();
+    private final TimeAPI time = new TimeAPI();
 
     private void useSelected(int selected){
         switch (selected) {
@@ -32,10 +33,11 @@ public class Menu {
     public void menu(){
         Scanner input = new Scanner(System.in);
         try{
+            time.getFromApi();
             System.out.println("Enter your name");
             name = input.nextLine();
             while (!exit){
-                System.out.println("***************************\n1. Animal Quiz\n2. Language Quiz\n3. Switzerland Quiz\n4. show Scoreboard\n5. Quit");
+                System.out.println("***************************\n" +time.showAPIInfo()+ "\n1. Animal Quiz\n2. Language Quiz\n3. Switzerland Quiz\n4. show Scoreboard\n5. Quit");
                 useSelected(input.nextInt());
             }
         }catch (Exception e){
